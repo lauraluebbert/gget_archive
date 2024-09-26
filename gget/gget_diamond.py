@@ -7,6 +7,7 @@ import uuid
 import json as json_package
 
 from .compile import PACKAGE_PATH
+
 from .utils import (
     tsv_to_df,
     create_tmp_fasta,
