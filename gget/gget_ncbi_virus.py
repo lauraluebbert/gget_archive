@@ -184,7 +184,7 @@ def filter_sequences(
     max_protein_count=None,
     max_ambiguous_chars=None,
     has_proteins=None,
-    proteins_complete=False,
+    proteins_complete=None,
 ):
     """Filter sequences based on various metadata criteria."""
 
@@ -552,7 +552,7 @@ def ncbi_virus(
     max_gene_count=None,
     nuc_completeness=None,
     has_proteins=None,
-    proteins_complete=False,
+    proteins_complete=None,
     host_taxid=None,
     lab_passaged=None,
     geographic_region=None,
@@ -591,7 +591,7 @@ def ncbi_virus(
     - has_proteins         Str or list of proteins, genes, or segments that should be present in the sequence
                            (based on sequence annotation provided by the submitter). Default: None
                            Note: Set proteins_complete=True to only include sequences for which the proteins/genes/segments are marked 'complete'
-    - proteins_complete    True/False whether proteins/genes/segments in has_proteins should be marked as complete. Default: False
+    - proteins_complete    Set to True if proteins/genes/segments in has_proteins should be marked as complete. Default: False
     - host_taxid           NCBI Taxonomy ID of the host organism. Filters the results to only include viruses
                            associated with hosts that fall within the specified TaxID. Default: None
     - lab_passaged         True/False Indicates whether the virus sequence has been passaged in a laboratory setting.
