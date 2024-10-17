@@ -642,6 +642,8 @@ def ncbi_virus(
         raise TypeError(
             "Argument 'proteins_complete' must be a boolean (True or False) or None."
         )
+    if isinstance(virus, int):
+        virus = str(virus)
 
     check_min_max(
         min_seq_length,
