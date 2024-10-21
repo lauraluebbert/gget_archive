@@ -184,7 +184,7 @@ def filter_sequences(
     max_protein_count=None,
     max_ambiguous_chars=None,
     has_proteins=None,
-    proteins_complete=None,
+    proteins_complete=False,
 ):
     """Filter sequences based on various metadata criteria."""
 
@@ -552,7 +552,7 @@ def ncbi_virus(
     max_gene_count=None,
     nuc_completeness=None,
     has_proteins=None,
-    proteins_complete=None,
+    proteins_complete=False,
     host_taxid=None,
     lab_passaged=None,
     geographic_region=None,
@@ -577,7 +577,8 @@ def ncbi_virus(
     - virus                Virus taxon or accession, e.g. 'Norovirus' or 'coronaviridae' or
                            '11320' (taxid of Influenza A virus) or 'NC_045512.2'
                            If this input is a virus NCBI accession (e.g. 'NC_045512.2'), set accession = True.
-    - accession            True/False whether 'virus' is an accession. Default: False
+    - accession            Set to True when argument 'virus' is an NCBI accession (NCBI accessions begin with 'NC'). 
+                           Default: False
     - outfolder            Path to folder to save the requested data in, e.g. 'path/to/norovirus_folder'.
                            Default: None (saves output into current working directory)
 
@@ -591,7 +592,8 @@ def ncbi_virus(
     - has_proteins         Str or list of proteins, genes, or segments that should be present in the sequence
                            (based on sequence annotation provided by the submitter). Default: None
                            Note: Set proteins_complete=True to only include sequences for which the proteins/genes/segments are marked 'complete'
-    - proteins_complete    Set to True if proteins/genes/segments in has_proteins should be marked as complete. Default: False
+    - proteins_complete    Set to True if proteins/genes/segments in has_proteins should be marked as complete.  
+                           Default: False (returns all sequences regardless of whether the proteins in has_proteins are marked as complete)
     - host_taxid           NCBI Taxonomy ID of the host organism. Filters the results to only include viruses
                            associated with hosts that fall within the specified TaxID. Default: None
     - lab_passaged         True/False Indicates whether the virus sequence has been passaged in a laboratory setting.
@@ -640,7 +642,7 @@ def ncbi_virus(
         )
     if proteins_complete is not None and not isinstance(proteins_complete, bool):
         raise TypeError(
-            "Argument 'proteins_complete' must be a boolean (True or False) or None."
+            "Argument 'proteins_complete' must be a boolean (True or False)."
         )
     if isinstance(virus, int):
         virus = str(virus)
