@@ -12,7 +12,7 @@ import pandas as pd
 from datetime import datetime
 from dateutil import parser
 
-# !!! REMOVE BIOPYTHON DEPENDENCY
+# !!! TO-DO: REMOVE BIOPYTHON DEPENDENCY
 from Bio import SeqIO
 
 from .utils import set_up_logger
@@ -158,6 +158,7 @@ def parse_date(date_str):
         return None
 
 
+# !!! TO-DO: Find ways to filter pre-download so you don't have to download a ton of seqs just to filter after
 def filter_sequences(
     fna_file,
     metadata_dict,
