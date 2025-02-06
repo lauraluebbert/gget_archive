@@ -90,9 +90,9 @@ def run_datasets(
             )
     else:
         if accession:
-            command = f"{datasets_path} download virus genome accession '{virus}'"
+            command = f"{datasets_path} download virus genome accession '{virus}' --no-progressbar"
         else:
-            command = f"{datasets_path} download virus genome taxon '{virus}'"
+            command = f"{datasets_path} download virus genome taxon '{virus}' --no-progressbar"
 
     # Loop through the dictionary and construct the command
     for key, value in args_dict.items():
