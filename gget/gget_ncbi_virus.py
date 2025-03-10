@@ -89,14 +89,10 @@ def run_datasets(
                 f"{datasets_path} download virus genome taxon {virus} --no-progressbar"
             )
     else:
-        print(virus)
-        print(host)
-        print(filename)
-        print(min_release_date)
         if accession:
             command = f"{datasets_path} download virus genome accession '{virus}' --no-progressbar"
         else:
-            command = f"{datasets_path} download virus genome taxon '{virus}'"
+            command = f"{datasets_path} download virus genome taxon '{virus}' --no-progressbar"
 
     # Loop through the dictionary and construct the command
     for key, value in args_dict.items():
@@ -122,7 +118,7 @@ def run_datasets(
 
     # Return None if the subprocess returned with an error
     if process_2.wait() != 0:
-        raise RuntimeError("NCBI dataset download failed.")
+        raise RuntimeError("NCBI dataset download failed. If you see the message 'Error: Internal error (invalid zip archive)' above, this may be due to a temporary network issue. Please wait a moment and try again later.")
     else:
         logger.debug(
             f"NCBI dataset download complete. Download time: {round(time.time() - start_time, 2)} seconds"
