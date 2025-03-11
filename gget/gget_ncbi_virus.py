@@ -326,14 +326,15 @@ def filter_sequences(
                 continue
 
         # if min_release_date is not None or max_release_date is not None:
-        #     release_date_str = metadata.get("releaseDate")
-        #     release_date_value = parse_date(release_date_str.split("T")[0])
-        #     if release_date_str is None or release_date_value is None:
-        #         continue
-        #     if min_release_date and release_date_value < min_release_date:
-        #         continue
-        #     if max_release_date and release_date_value > max_release_date:
-        #         continue
+        if max_release_date is not None:
+            release_date_str = metadata.get("releaseDate")
+            release_date_value = parse_date(release_date_str.split("T")[0])
+            if release_date_str is None or release_date_value is None:
+                continue
+            # if min_release_date and release_date_value < min_release_date:
+            #     continue
+            if max_release_date and release_date_value > max_release_date:
+                continue
 
         if min_mature_peptide_count is not None or max_mature_peptide_count is not None:
             mature_peptide_count = metadata.get("maturePeptideCount")
